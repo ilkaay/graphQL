@@ -1,2 +1,0 @@
-# graphQL
-vue-apollo-graphQL
