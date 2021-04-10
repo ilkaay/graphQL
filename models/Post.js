@@ -3,52 +3,52 @@ const mongoose = require("mongoose");
 const PostSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   imageUrl: {
     type: String,
-    required: true
+    required: true,
   },
   categories: {
     type: [String],
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
   createdDate: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   likes: {
     type: Number,
-    default: 0
+    default: 0,
   },
-  // property ('createdBy') === path
+  // property ('createdBy') === relation
   // ref ('User') === model
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: "User"
+    ref: "User",
   },
   messages: [
     {
       messageBody: {
         type: String,
-        required: true
+        required: true,
       },
       messageDate: {
         type: Date,
-        default: Date.now
+        default: Date.now,
       },
       messageUser: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: "User"
-      }
-    }
-  ]
+        ref: "User",
+      },
+    },
+  ],
 });
 
 module.exports = mongoose.model("Post", PostSchema);
