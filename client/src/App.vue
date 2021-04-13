@@ -1,10 +1,43 @@
 <template>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg" style="background-color: #36017c;">
+    <!-- Side Navbar -->
+    <div v-if="isClose === false">
+      <ul class="nav sidebar-nav p-2">
+        <div class="sidebar-header">
+          <div class="sidebar-brand">
+            <button
+              type="button"
+              @click="isClose = true"
+              class="hamburger animated fadeInLeft is-closed"
+              data-toggle="offcanvas"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="35"
+                fill="white"
+                class="bi bi-list"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <li><a href="#home">Posts</a></li>
+        <li><a href="#about">Sign In</a></li>
+        <li><a href="#events">Sign Up</a></li>
+      </ul>
+    </div>
+
     <!-- Horizontal Navbar -->
     <div class="row">
       <div class="col-md-3 p-4">
-        <a class="navbar-brand text-white" href="#">
+        <a @click="isClose = false" class="navbar-brand text-white" href="#">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="35"
@@ -111,10 +144,91 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isClose: true,
+    };
+  },
+};
 </script>
 
 <style scoped>
+#sidebar-wrapper {
+  z-index: 1000;
+  left: 220px;
+  width: 0;
+  height: 100%;
+  margin-left: -220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.5s ease;
+}
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 220px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  padding: 5px;
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  width: 100%;
+}
+
+.sidebar-nav li a {
+  display: block;
+  color: #36017c;
+  text-decoration: none;
+  padding: 10px 15px 10px 30px;
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus,
+.sidebar-nav li.open a:hover,
+.sidebar-nav li.open a:active,
+.sidebar-nav li.open a:focus {
+  color: #36017c;
+  text-decoration: none;
+  background-color: #b8c0ff;
+}
+.sidebar-header {
+  text-align: center;
+  font-size: 20px;
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+.sidebar-brand {
+  height: 65px;
+  position: relative;
+  background: #36017c;
+  padding-top: 1em;
+}
+.sidebar-brand a {
+  color: #ddd;
+  text-decoration: none;
+}
+.hamburger {
+  position: absolute;
+  left: 0;
+  z-index: 999;
+  width: 32px;
+  height: 32px;
+  background-color: #36017c;
+  border: none;
+}
+
+#sidebar-wrapper {
+  width: 220px;
+}
 input {
   background-color: transparent;
   color: #f4f4f4;
