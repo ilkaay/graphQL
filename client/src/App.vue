@@ -28,9 +28,9 @@
             </button>
           </div>
         </div>
-        <li><a href="#home">Posts</a></li>
-        <li><a href="#about">Sign In</a></li>
-        <li><a href="#events">Sign Up</a></li>
+        <li><router-link to="/posts">Posts</router-link></li>
+        <li><router-link to="/signin">Sign In</router-link></li>
+        <li><router-link to="/signup">Sign Up</router-link></li>
       </ul>
     </div>
 
