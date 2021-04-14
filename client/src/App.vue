@@ -5,7 +5,7 @@
       <!-- Side Navbar -->
       <div v-if="isClose === false">
         <ul class="nav sidebar-nav p-2">
-          <div class="sidebar-header">
+          <!-- <div class="sidebar-header">
             <div class="sidebar-brand">
               <button
                 type="button"
@@ -28,7 +28,7 @@
                 </svg>
               </button>
             </div>
-          </div>
+          </div> -->
 
           <!-- Posts -->
           <li>
@@ -91,7 +91,11 @@
       <!-- Horizontal Navbar -->
       <div class="row">
         <div class="col-md-3 p-4">
-          <a @click="isClose = false" class="navbar-brand text-white" href="#">
+          <a
+            @click="isClose = !isClose"
+            class="navbar-brand text-white"
+            href="#"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="35"
@@ -106,7 +110,9 @@
               />
             </svg>
           </a>
-          <a class="navbar-brand text-white" href="#">VUESHARE</a>
+          <router-link to="/" class="navbar-brand text-white"
+            >VUESHARE</router-link
+          >
         </div>
 
         <!-- Search form -->
@@ -196,7 +202,11 @@
       </div>
     </nav>
 
-    <router-view></router-view>
+    <div class="container">
+      <transition name="fade">
+        <router-view></router-view>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -211,6 +221,19 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition-property: all;
+  transition-duration: 0.25s;
+}
+.fade-enter-active {
+  transition-delay: 0.25s;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+  transform: translateX(-25px);
+}
 #sidebar-wrapper {
   z-index: 1000;
   left: 220px;
@@ -226,7 +249,7 @@ export default {
   position: absolute;
   top: 0;
   width: 220px;
-  margin: 0;
+  margin-top: 4.3rem;
   padding: 0;
   list-style: none;
   z-index: 1;
