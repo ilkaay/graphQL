@@ -18,7 +18,7 @@ const apolloProvider = new VueApollo({ defaultClient });
 Vue.config.productionTip = false;
 
 new Vue({
-  provide: apolloProvider,
+  apolloProvider,
   router,
   store,
   render: (h) => h(App),
