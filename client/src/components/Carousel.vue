@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="loading">
-      <h1>Loading..</h1>
+      <div class="spinner-border" style="" role="status"></div>
     </div>
 
     <div
@@ -80,10 +80,20 @@ export default {
 </script>
 
 <style scoped>
+.spinner-border {
+  position: fixed;
+  left: 45%;
+  top: 45%;
+  width: 5rem;
+  height: 5rem;
+  color: #36017c;
+}
+
 .carousel-item {
   background-size: cover;
   background-position: center center;
 }
+
 .carousel-item h1,
 h4 {
   color: black;
