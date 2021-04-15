@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="$apolloData.loading">
+    <div v-if="loading">
       <h1>Loading..</h1>
     </div>
 
@@ -12,7 +12,7 @@
     >
       <div class="carousel-indicators">
         <button
-          v-for="(post, index) in getPosts"
+          v-for="(post, index) in posts"
           :key="post._id"
           :data-bs-slide-to="index"
           type="button"
@@ -23,7 +23,7 @@
       </div>
       <div class="carousel-inner">
         <div
-          v-for="(post, index) in getPosts"
+          v-for="(post, index) in posts"
           :key="post._id"
           class="carousel-item"
           :class="{
@@ -63,28 +63,24 @@
 </template>
 
 <script>
-import { gql } from "apollo-boost";
+import { mapGetters } from "vuex";
 export default {
-  apollo: {
-    getPosts: {
-      query: gql`
-        query {
-          getPosts {
-            _id
-            title
-            imageUrl
-            description
-          }
-        }
-      `,
+  created() {
+    this.handleCarouselGetPosts();
+  },
+  methods: {
+    handleCarouselGetPosts() {
+      this.$store.dispatch("getPosts");
     },
+  },
+  computed: {
+    ...mapGetters(["posts", "loading"]),
   },
 };
 </script>
 
 <style scoped>
 .carousel-item {
-  aspect-ratio: auto;
   background-size: cover;
   background-position: center center;
 }
