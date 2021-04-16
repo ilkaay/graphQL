@@ -47,13 +47,14 @@ export default new Vuex.Store({
         });
     },
 
-    siginUser({ commit }) {
+    signinUser({ commit }, payload) {
       apolloClient
-        .query({
-          query: SIGNIN_USER,
+        .mutate({
+          mutation: SIGNIN_USER,
+          variables: payload,
         })
-        .then((data) => {
-          console.log(data);
+        .then(({ data }) => {
+          localStorage.setItem("token", data.signinUser.token);
         })
         .catch((err) => {
           console.error(err);

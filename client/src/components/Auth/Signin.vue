@@ -6,15 +6,21 @@
       </div>
     </div>
 
-    <form name="form" class="row" @submit.prevent="checkForm">
+    <form name="form" class="row" @submit.prevent="handleSigninUser">
       <div class="col-10 ">
         <label class="form-label"><strong>Username</strong></label>
-        <input type="text" class="form-control" placeholder="Enter Username" />
+        <input
+          v-model="username"
+          type="text"
+          class="form-control"
+          placeholder="Enter Username"
+        />
       </div>
 
       <div class="col-10 mt-4">
         <label class="form-label"><strong>Password</strong></label>
         <input
+          v-model="password"
           type="password"
           class="form-control"
           placeholder="Enter Password"
@@ -40,6 +46,25 @@
     </form>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
+  methods: {
+    handleSigninUser() {
+      this.$store.dispatch("signinUser", {
+        username: this.username,
+        password: this.password,
+      });
+    },
+  },
+};
+</script>
 
 <style scoped>
 ::placeholder {
