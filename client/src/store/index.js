@@ -8,15 +8,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    sidebarToggle: false,
     posts: [],
     loading: false,
   },
 
   getters: {
-    getToggleSidebar(state) {
-      return state.sidebarToggle;
-    },
     posts(state) {
       return state.posts;
     },
@@ -26,9 +22,6 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    toggleSidebar(state) {
-      state.sidebarToggle = !state.sidebarToggle;
-    },
     setPosts(state, payload) {
       state.posts = payload;
     },
@@ -38,10 +31,6 @@ export default new Vuex.Store({
   },
 
   actions: {
-    toggleSidebar({ commit }) {
-      commit("toggleSidebar");
-    },
-
     getPosts({ commit }) {
       commit("setLoading", true);
       apolloClient
@@ -84,5 +73,4 @@ export default new Vuex.Store({
         });
     },
   },
-  modules: {},
 });

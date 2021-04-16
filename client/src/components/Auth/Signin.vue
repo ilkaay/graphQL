@@ -22,9 +22,20 @@
       </div>
 
       <div class="col-10 mt-5">
-        <button class="col-12 btn font-weight-bold p-2" type="submit">
+        <button class="col-12 btn p-2" type="submit">
           <h3>Sign In</h3>
         </button>
+      </div>
+
+      <div class="row">
+        <div class="col-10 mt-5 text-center">
+          <h4>Don't have an account?</h4>
+        </div>
+        <div class="col-10 mt-3 text-center">
+          <router-link class="text-center text-decoration-none" to="/signup">
+            Sign Up
+          </router-link>
+        </div>
       </div>
     </form>
   </div>

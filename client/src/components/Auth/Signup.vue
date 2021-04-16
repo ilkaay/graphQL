@@ -26,6 +26,17 @@
           <h3>Sign Up</h3>
         </button>
       </div>
+
+      <div class="row">
+        <div class="col-10 mt-5 text-center">
+          <h4>Already have an account?</h4>
+        </div>
+        <div class="col-10 mt-3 text-center">
+          <router-link class="text-center text-decoration-none" to="/signin">
+            Sign In
+          </router-link>
+        </div>
+      </div>
     </form>
   </div>
 </template>
