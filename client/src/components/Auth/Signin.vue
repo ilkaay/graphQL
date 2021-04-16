@@ -27,13 +27,13 @@
         </button>
       </div>
 
-      <div class="row">
-        <div class="col-10 mt-5 text-center">
+      <div class="row mt-5 ">
+        <div class="col-10 signup text-center">
           <h4>Don't have an account?</h4>
         </div>
-        <div class="col-10 mt-3 text-center">
+        <div class="col-10 text-center">
           <router-link class="text-center text-decoration-none" to="/signup">
-            Sign Up
+            <h4>Sign Up</h4>
           </router-link>
         </div>
       </div>
@@ -65,5 +65,10 @@ h1 {
 .btn {
   background-color: #36017c;
   color: #edf2fb;
+}
+
+.signup {
+  border-top: 2px solid;
+  padding: 1rem;
 }
 </style>
