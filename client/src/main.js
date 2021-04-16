@@ -7,6 +7,13 @@ import "@babel/polyfill";
 import ApolloClient from "apollo-boost";
 import VueApollo from "vue-apollo";
 
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+
+import "bootstrap-vue/dist/bootstrap-vue.css";
+
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
+
 Vue.use(VueApollo);
 
 export const defaultClient = new ApolloClient({

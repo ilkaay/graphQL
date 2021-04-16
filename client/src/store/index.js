@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import { GET_POSTS } from "../queries";
+import { GET_POSTS, SIGNIN_USER, SIGNUP_USER } from "../queries";
 import { defaultClient as apolloClient } from "../main";
 
 Vue.use(Vuex);
@@ -12,6 +12,7 @@ export default new Vuex.Store({
     posts: [],
     loading: false,
   },
+
   getters: {
     getToggleSidebar(state) {
       return state.sidebarToggle;
@@ -23,6 +24,7 @@ export default new Vuex.Store({
       return state.loading;
     },
   },
+
   mutations: {
     toggleSidebar(state) {
       state.sidebarToggle = !state.sidebarToggle;
@@ -34,10 +36,12 @@ export default new Vuex.Store({
       state.loading = payload;
     },
   },
+
   actions: {
     toggleSidebar({ commit }) {
       commit("toggleSidebar");
     },
+
     getPosts({ commit }) {
       commit("setLoading", true);
       apolloClient
@@ -50,6 +54,32 @@ export default new Vuex.Store({
         })
         .catch((err) => {
           commit("setLoading", false);
+          console.error(err);
+        });
+    },
+
+    siginUser({ commit }) {
+      apolloClient
+        .query({
+          query: SIGNIN_USER,
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+
+    signupUser({ commit }) {
+      apolloClient
+        .query({
+          query: SIGNUP_USER,
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
           console.error(err);
         });
     },
