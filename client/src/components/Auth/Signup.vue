@@ -29,7 +29,7 @@
 
       <div class="row mt-5 ">
         <div class="col-10 signin text-center">
-          <h4>Don't have an account?</h4>
+          <h4>Already have an account?</h4>
         </div>
         <div class="col-10 text-center">
           <router-link class="text-center text-decoration-none" to="/signin">

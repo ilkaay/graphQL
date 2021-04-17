@@ -1,7 +1,8 @@
-const { ApolloServer } = require("apollo-server");
+const { ApolloServer, AuthenticationError } = require("apollo-server");
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
+const jwt = require("jsonwebtoken");
 
 // Import typeDefs and resolvers
 const filePath = path.join(__dirname, "typeDefs.gql");
@@ -23,13 +24,27 @@ mongoose
   .then(() => console.log("DB connected"))
   .catch((err) => console.error(err));
 
+const getUser = (token) => {
+  if (token) {
+    try {
+      let user = jwt.verify(token, process.env.SECRET);
+      return user;
+    } catch (error) {
+      throw new AuthenticationError(
+        "Your session has ended. Please sign in again."
+      );
+    }
+  }
+};
+
 // Connect Apollo/GraphQL Server using typeDefs, resolvers, context object
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: {
-    User,
-    Post,
+  context: ({ req }) => {
+    const token = req.headers["authorization"];
+    User, Post;
+    return { User, Post, currentUser: getUser(token) };
   },
 });
 
