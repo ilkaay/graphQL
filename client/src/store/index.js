@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import router from "../router";
 
 import {
   GET_CURRENT_USER,
@@ -14,12 +15,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     posts: [],
+    user: null,
     loading: false,
   },
 
   getters: {
     posts(state) {
       return state.posts;
+    },
+    user(state) {
+      return state.user;
     },
     loading(state) {
       return state.loading;
@@ -29,6 +34,9 @@ export default new Vuex.Store({
   mutations: {
     setPosts(state, payload) {
       state.posts = payload;
+    },
+    setUser(state, payload) {
+      state.user = payload;
     },
     setLoading(state, payload) {
       state.loading = payload;
@@ -44,7 +52,7 @@ export default new Vuex.Store({
         })
         .then(({ data }) => {
           commit("setLoading", false);
-          console.log(data.getCurrentUser);
+          commit("setUser", data.getCurrentUser);
         })
         .catch((err) => {
           commit("setLoading", false);
@@ -75,6 +83,7 @@ export default new Vuex.Store({
         })
         .then(({ data }) => {
           localStorage.setItem("token", data.signinUser.token);
+          router.go();
         })
         .catch((err) => {
           console.error(err);
