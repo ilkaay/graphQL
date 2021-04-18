@@ -8,6 +8,10 @@ type User {
   favorites: [Post]
 }
 
+type Token {
+  token: String!
+}
+
 type Post {
   _id: ID
   title: String!
@@ -28,6 +32,7 @@ type Message {
 }
 
 type Query {
+  getCurrentUser: User
   getPosts: [Post]
 }
 
@@ -39,5 +44,6 @@ type Mutation {
     description: String!
     creatorId: ID!
   ): Post!
-  signupUser(username: String!, email: String!, password: String!): User!
+  signinUser(username: String!, password: String!): Token
+  signupUser(username: String!, email: String!, password: String!): Token
 }
