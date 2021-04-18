@@ -34,7 +34,9 @@
         <div class="collapse navbar-collapse pt-1">
           <ul class="navbar-nav mx-auto">
             <router-link to="/posts" class="nav-link text-white m-2">
-              <b-icon-chat class="text-white"></b-icon-chat>
+              <b-icon-chat-left-text-fill
+                class="text-white"
+              ></b-icon-chat-left-text-fill>
               <span class="d-none d-xl-inline-block m-2">POSTS</span>
             </router-link>
 
@@ -43,7 +45,7 @@
               to="/profile"
               class="nav-link text-white m-2"
             >
-              <b-icon-person-circle class="text-white"></b-icon-person-circle>
+              <b-icon-person-fill class="text-white"></b-icon-person-fill>
               <span class="d-none d-xl-inline-block m-2">PROFILE</span>
             </router-link>
 
@@ -92,14 +94,14 @@
         <div v-if="user">
           <li class="list-group-item border-0 bg-transparent">
             <router-link class="text-decoration-none" to="/posts">
-              <b-icon-chat></b-icon-chat>
+              <b-icon-chat-left-text-fill></b-icon-chat-left-text-fill>
               <span class="p-2">POSTS</span>
             </router-link>
           </li>
 
           <li class="list-group-item border-0 bg-transparent">
             <router-link class="text-decoration-none" to="/profile">
-              <b-icon-person-circle></b-icon-person-circle>
+              <b-icon-person-fill></b-icon-person-fill>
               <span class="p-2">PROFILE</span>
             </router-link>
           </li>

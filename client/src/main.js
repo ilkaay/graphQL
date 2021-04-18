@@ -11,9 +11,12 @@ import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
+import FormAlert from "../src/components/Shared/FormAlert.vue";
+
+Vue.component("form-alert", FormAlert);
+
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
-
 Vue.use(VueApollo);
 
 export const defaultClient = new ApolloClient({

@@ -1,8 +1,14 @@
 <template>
-  <div style="position: absolute; top: 30%; left: 35%; right: 33%;">
+  <div style="position: absolute; top: 25%; left: 35%; right: 33%;">
     <div class="row">
-      <div class="col-10 mb-5">
+      <div class="col-10 mb-4">
         <h1>Sign In</h1>
+      </div>
+    </div>
+
+    <div v-if="error" class="row mb-3">
+      <div class="col-10 rounded-3 d-flex" style="background-color: #9e2a2b;">
+        <form-alert :message="error.message"></form-alert>
       </div>
     </div>
 
@@ -29,7 +35,10 @@
 
       <div class="col-10 mt-5">
         <button class="col-12 btn p-2" type="submit">
-          <h3>Sign In</h3>
+          <span v-if="loading">
+            <div class="spinner-border" style="" role="status"></div>
+          </span>
+          <h3 v-else>Sign In</h3>
         </button>
       </div>
 
@@ -57,7 +66,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["user"]),
+    ...mapGetters(["loading", "error", "user"]),
   },
   watch: {
     user(value) {
@@ -78,6 +87,12 @@ export default {
 </script>
 
 <style scoped>
+.spinner-border {
+  width: 2rem;
+  height: 2rem;
+  color: #edf2fb;
+}
+
 ::placeholder {
   color: #040404;
   opacity: 0.8;
