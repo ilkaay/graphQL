@@ -40,7 +40,7 @@
 
             <router-link
               v-if="user"
-              to="/posts"
+              to="/profile"
               class="nav-link text-white m-2"
             >
               <b-icon-person-circle class="text-white"></b-icon-person-circle>
@@ -49,13 +49,15 @@
 
             <router-link
               v-if="user"
-              to="/posts"
+              to="/signin"
               class="nav-link text-white m-2"
             >
-              <b-icon-box-arrow-right
-                class="text-white"
-              ></b-icon-box-arrow-right>
-              <span class="d-none d-xl-inline-block m-2">LOG OUT</span>
+              <span @click="handleSignoutUser">
+                <b-icon-box-arrow-right
+                  class="text-white"
+                ></b-icon-box-arrow-right>
+                <span class="d-none d-xl-inline-block m-2">SIGN OUT</span>
+              </span>
             </router-link>
 
             <router-link
@@ -111,8 +113,10 @@
 
           <li class="list-group-item border-0 bg-transparent">
             <router-link class="text-decoration-none" to="/signin">
-              <b-icon-box-arrow-right></b-icon-box-arrow-right>
-              <span class="p-2">LOG OUT</span>
+              <span @click="handleSignoutUser">
+                <b-icon-box-arrow-right></b-icon-box-arrow-right>
+                <span class="p-2">SIGN OUT</span>
+              </span>
             </router-link>
           </li>
         </div>
@@ -140,6 +144,11 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  methods: {
+    handleSignoutUser() {
+      this.$store.dispatch("signoutUser");
+    },
+  },
   computed: {
     ...mapGetters(["user"]),
   },
